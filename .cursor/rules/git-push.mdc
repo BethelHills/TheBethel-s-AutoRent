@@ -1,0 +1,14 @@
+---
+description: Always push changes to TheBethel-s-AutoRent GitHub repo
+alwaysApply: true
+---
+
+# Git Push Convention
+
+When making changes to this project, always push to:
+
+**https://github.com/BethelHills/TheBethel-s-AutoRent.git**
+
+- Remote: `origin`
+- Branch: `main`
+- After committing changes, run: `git push origin main`
