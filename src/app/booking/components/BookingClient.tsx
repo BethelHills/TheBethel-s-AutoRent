@@ -109,25 +109,25 @@ export default function BookingClient() {
                         </select>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="min-w-0">
                         <label className="text-xs font-700 text-muted uppercase block mb-2">Pickup Date</label>
                         <input
                           type="date"
                           value={pickupDate}
                           onChange={(e) => setPickupDate(e.target.value)}
                           min={new Date().toISOString().split('T')[0]}
-                          className="form-input"
+                          className="form-input w-full min-w-0"
                         />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <label className="text-xs font-700 text-muted uppercase block mb-2">Return Date</label>
                         <input
                           type="date"
                           value={returnDate}
                           onChange={(e) => setReturnDate(e.target.value)}
                           min={pickupDate || new Date().toISOString().split('T')[0]}
-                          className="form-input"
+                          className="form-input w-full min-w-0"
                         />
                       </div>
                     </div>

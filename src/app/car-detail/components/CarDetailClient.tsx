@@ -729,23 +729,23 @@ export default function CarDetailClient() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 mb-5">
-                    <div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+                    <div className="min-w-0">
                       <label className="text-xs font-700 text-muted uppercase tracking-wider mb-1.5 block">Pickup</label>
                       <button
                         type="button"
                         onClick={() => { setCalendarSelectingEnd(false); setPickupDate(null); setReturnDate(null); }}
-                        className="form-input text-left text-sm font-600 flex items-center gap-2"
+                        className="form-input w-full text-left text-sm font-600 flex items-center gap-2 min-w-0"
                       >
                         <Icon name="CalendarIcon" size={15} className="text-primary shrink-0" />
-                        {pickupDate ? formatDate(pickupDate) : 'Select'}
+                        <span className="truncate">{pickupDate ? formatDate(pickupDate) : 'Select'}</span>
                       </button>
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <label className="text-xs font-700 text-muted uppercase tracking-wider mb-1.5 block">Return</label>
-                      <button type="button" className="form-input text-left text-sm font-600 flex items-center gap-2">
+                      <button type="button" className="form-input w-full text-left text-sm font-600 flex items-center gap-2 min-w-0">
                         <Icon name="CalendarIcon" size={15} className="text-muted shrink-0" />
-                        {returnDate ? formatDate(returnDate) : 'Select'}
+                        <span className="truncate">{returnDate ? formatDate(returnDate) : 'Select'}</span>
                       </button>
                     </div>
                   </div>

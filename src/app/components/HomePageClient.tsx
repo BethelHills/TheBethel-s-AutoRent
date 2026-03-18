@@ -60,14 +60,14 @@ export default function HomePageClient() {
               <Icon name="MapPinIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
               <input type="text" placeholder="City or location" className="form-input pl-12" />
             </div>
-            <div className="grid grid-cols-2 gap-4 lg:w-80">
-              <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:w-80">
+              <div className="min-w-0">
                 <label className="text-xs font-700 text-muted uppercase block mb-1">Pickup</label>
-                <input type="date" className="form-input" />
+                <input type="date" className="form-input w-full min-w-0" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <label className="text-xs font-700 text-muted uppercase block mb-1">Return</label>
-                <input type="date" className="form-input" />
+                <input type="date" className="form-input w-full min-w-0" />
               </div>
             </div>
             <Link href="/car-listing" className="btn-primary py-3.5 px-8 rounded-xl justify-center self-end lg:self-auto">
