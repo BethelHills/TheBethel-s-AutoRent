@@ -55,22 +55,20 @@ export default function HomePageClient() {
       {/* Search bar */}
       <section id="search" className="relative z-20 -mt-16 max-w-5xl mx-auto px-6">
         <div className="bg-white rounded-3xl shadow-float p-6 border border-border overflow-hidden">
-          <div className="flex flex-col lg:flex-row gap-4 min-w-0">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 min-w-0">
             <div className="flex-1 min-w-0 relative">
               <Icon name="MapPinIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
               <input type="text" placeholder="City or location" className="form-input pl-12 w-full max-w-full py-3.5" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 min-w-0 lg:flex-none lg:w-80">
-              <div className="min-w-0 overflow-hidden relative">
-                <Icon name="CalendarIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-                <input type="date" className="form-input pl-12 w-full max-w-full min-w-0 py-3.5" aria-label="Pickup date" />
-              </div>
-              <div className="min-w-0 overflow-hidden relative">
-                <Icon name="CalendarIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-                <input type="date" className="form-input pl-12 w-full max-w-full min-w-0 py-3.5" aria-label="Return date" />
-              </div>
+            <div className="flex-1 min-w-0 relative overflow-hidden">
+              <Icon name="CalendarIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+              <input type="date" className="form-input pl-12 w-full max-w-full min-w-0 py-3.5" aria-label="Pickup date" />
             </div>
-            <Link href="/car-listing" className="btn-primary py-3.5 px-8 rounded-xl justify-center self-end lg:self-auto">
+            <div className="flex-1 min-w-0 relative overflow-hidden">
+              <Icon name="CalendarIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+              <input type="date" className="form-input pl-12 w-full max-w-full min-w-0 py-3.5" aria-label="Return date" />
+            </div>
+            <Link href="/car-listing" className="btn-primary py-3.5 px-8 rounded-xl justify-center shrink-0 self-end sm:self-auto">
               Search
               <Icon name="MagnifyingGlassIcon" size={18} />
             </Link>
