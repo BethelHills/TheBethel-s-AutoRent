@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
+import { ALL_CARS } from '@/lib/cars';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -28,64 +30,72 @@ interface SimilarCar {
   type: string;
 }
 
-// ─── Mock Data ───────────────────────────────────────────────────────────────
+// ─── Mock Data (extended details for car 1) ───────────────────────────────────
 
-const CAR = {
-  id: 1,
-  name: 'Mustang GT Convertible',
-  brand: 'Ford',
-  year: 2024,
-  type: 'Sports',
-  transmission: 'Automatic',
-  fuel: 'Petrol',
-  seats: 4,
-  doors: 2,
-  engineSize: '5.0L V8',
-  horsepower: 450,
-  acceleration: '4.2s 0-60',
-  topSpeed: '155 mph',
-  fuelEconomy: '15 / 24 mpg',
-  pricePerDay: 189,
-  pricePerWeek: 1150,
-  deposit: 500,
-  rating: 4.9,
-  reviewCount: 312,
-  location: 'Los Angeles, CA',
-  pickupAddress: '1234 Sunset Blvd, Los Angeles, CA 90028',
-  description:
-    'Experience the iconic American muscle car in its most thrilling form. The 2024 Ford Mustang GT Convertible combines raw power with open-air freedom. With a 5.0L V8 engine producing 450 horsepower and a responsive 10-speed automatic transmission, every drive is an event. Available at our LAX pickup location.',
-  images: [
-    'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=1200&q=85',
-    'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&q=85',
-    'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=85',
-    'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=85',
-    'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&q=85',
-  ],
-  features: [
-    'Apple CarPlay & Android Auto',
-    'B&O Premium Sound System',
-    'Adaptive Cruise Control',
-    'Lane Keep Assist',
-    'Blind Spot Monitoring',
-    'Reverse Camera',
-    'Heated & Cooled Seats',
-    'Convertible Soft Top',
-    'Sport+ Drive Mode',
-    'Track Apps',
-  ],
-  included: [
-    'Unlimited mileage',
-    'Roadside assistance 24/7',
-    'Basic insurance coverage',
-    'Second driver (free)',
-    'Full tank of fuel',
-  ],
-  notIncluded: [
-    'GPS navigation (add $8/day)',
-    'Child seat (add $10/day)',
-    'Premium insurance (add $25/day)',
-  ],
+const CAR_DETAILS: Record<number, Partial<{
+  name: string;
+  description: string;
+  images: string[];
+  engineSize: string;
+  horsepower: number;
+  acceleration: string;
+  topSpeed: string;
+  fuelEconomy: string;
+  doors: number;
+  pricePerWeek: number;
+  deposit: number;
+  pickupAddress: string;
+  features: string[];
+  included: string[];
+  notIncluded: string[];
+}>> = {
+  1: {
+    name: 'Mustang GT Convertible',
+    description: 'Experience the iconic American muscle car in its most thrilling form. The 2024 Ford Mustang GT Convertible combines raw power with open-air freedom. With a 5.0L V8 engine producing 450 horsepower and a responsive 10-speed automatic transmission, every drive is an event. Available at our LAX pickup location.',
+    images: [
+      'https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=1200&q=85',
+      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&q=85',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=85',
+      'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=85',
+      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&q=85',
+    ],
+    engineSize: '5.0L V8',
+    horsepower: 450,
+    acceleration: '4.2s 0-60',
+    topSpeed: '155 mph',
+    fuelEconomy: '15 / 24 mpg',
+    doors: 2,
+    pricePerWeek: 1150,
+    deposit: 500,
+    pickupAddress: '1234 Sunset Blvd, Los Angeles, CA 90028',
+    features: ['Apple CarPlay & Android Auto', 'B&O Premium Sound System', 'Adaptive Cruise Control', 'Lane Keep Assist', 'Blind Spot Monitoring', 'Reverse Camera', 'Heated & Cooled Seats', 'Convertible Soft Top', 'Sport+ Drive Mode', 'Track Apps'],
+    included: ['Unlimited mileage', 'Roadside assistance 24/7', 'Basic insurance coverage', 'Second driver (free)', 'Full tank of fuel'],
+    notIncluded: ['GPS navigation (add $8/day)', 'Child seat (add $10/day)', 'Premium insurance (add $25/day)'],
+  },
 };
+
+function getCarForDetail(carId: number) {
+  const base = ALL_CARS.find((c) => c.id === carId) || ALL_CARS[0];
+  const details = CAR_DETAILS[base.id] || {};
+  return {
+    ...base,
+    name: details.name || base.name,
+    description: details.description || 'Premium rental vehicle in excellent condition.',
+    images: details.images || [base.image, base.image, base.image],
+    engineSize: details.engineSize || '—',
+    horsepower: details.horsepower ?? 0,
+    acceleration: details.acceleration || '—',
+    topSpeed: details.topSpeed || '—',
+    fuelEconomy: details.fuelEconomy || '—',
+    doors: details.doors ?? 4,
+    pricePerWeek: details.pricePerWeek ?? base.pricePerDay * 7,
+    deposit: details.deposit ?? 500,
+    pickupAddress: details.pickupAddress || '—',
+    features: details.features || base.features,
+    included: details.included || ['Unlimited mileage', 'Basic insurance', '24/7 support'],
+    notIncluded: details.notIncluded || ['GPS (add-on)', 'Child seat (add-on)'],
+  };
+}
 
 const REVIEWS: Review[] = [
   {
@@ -250,6 +260,9 @@ const AvailabilityCalendar: React.FC<{
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export default function CarDetailClient() {
+  const searchParams = useSearchParams();
+  const carId = parseInt(searchParams.get('carId') || '1', 10);
+  const CAR = getCarForDetail(carId);
   const [activeImage, setActiveImage] = useState(0);
   const [isFav, setIsFav] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'specs' | 'reviews'>('overview');
@@ -861,11 +874,11 @@ export default function CarDetailClient() {
               ))}
             </div>
             <Link
-              href="/sign-up-login"
+              href={`/booking?carId=${CAR.id}`}
               className="w-full btn-primary justify-center py-4 text-base rounded-2xl block text-center"
             >
-              Proceed to Payment
-              <Icon name="LockClosedIcon" size={16} />
+              Proceed to Booking
+              <Icon name="ArrowRightIcon" size={16} />
             </Link>
             <p className="text-center text-xs text-muted mt-3">
               Free cancellation up to 24 hours before pickup

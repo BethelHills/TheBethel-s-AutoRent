@@ -17,7 +17,6 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@dhiwise/component-tagger": "^1.0.14",
     "@typescript-eslint/eslint-plugin": "^8.57.1",
     "@typescript-eslint/parser": "^8.57.1",
     "autoprefixer": "^10.4.27",

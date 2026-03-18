@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface HeaderProps {
@@ -7,7 +8,14 @@ interface HeaderProps {
 }
 
 export default function Header({ variant = 'solid' }: HeaderProps) {
-  const isSolid = variant === 'solid';
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    if (variant !== 'transparent') return;
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [variant]);
+  const isSolid = variant === 'solid' || (variant === 'transparent' && scrolled);
 
   return (
     <header
@@ -17,7 +25,7 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/car-listing" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="font-display font-800 text-xl text-white">
               TheBethel&apos;s AutoRent
             </span>
@@ -30,13 +38,13 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
               Browse Cars
             </Link>
             <Link
-              href="/car-listing"
+              href="/#search"
               className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
             >
               How It Works
             </Link>
             <Link
-              href="/car-listing"
+              href="/#search"
               className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
             >
               Contact
@@ -44,13 +52,19 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
           </nav>
           <div className="flex items-center gap-3">
             <Link
-              href="/car-listing"
+              href="/dashboard"
+              className="text-sm font-600 text-white/90 hover:text-primary transition-colors hidden sm:inline"
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/sign-up-login"
               className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
             >
               Sign In
             </Link>
             <Link
-              href="/car-listing"
+              href="/sign-up-login"
               className="px-4 py-2 bg-primary text-white text-sm font-700 rounded-xl hover:bg-primary-dark transition-colors"
             >
               Get Started

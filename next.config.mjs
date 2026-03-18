@@ -10,25 +10,5 @@ const nextConfig = {
   images: {
     remotePatterns: imageHosts,
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/car-listing',
-        permanent: false,
-      },
-    ];
-  },
-
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.(jsx|tsx)$/,
-      exclude: [/node_modules/],
-      use: [{
-        loader: '@dhiwise/component-tagger/nextLoader',
-      }],
-    });
-    return config;
-  },
 };
 export default nextConfig;

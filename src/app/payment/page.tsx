@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import CarDetailClient from './components/CarDetailClient';
+import PaymentClient from './components/PaymentClient';
 
 export const metadata: Metadata = {
-  title: 'Car Detail – TheBethel\'s AutoRent',
-  description: 'View car details and book your rental',
+  title: 'Payment – TheBethel\'s AutoRent',
+  description: 'Secure payment for your car rental',
 };
 
-export default function CarDetailPage() {
+export default function PaymentPage() {
   return (
     <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-      <CarDetailClient />
+      <PaymentClient />
     </Suspense>
   );
 }
