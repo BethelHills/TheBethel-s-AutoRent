@@ -683,7 +683,7 @@ export default function CarDetailClient() {
             {/* Right: Sticky Booking Sidebar */}
             <div className="xl:w-96 shrink-0">
               <div className="sticky-sidebar">
-                <div className="bg-white border border-border rounded-3xl p-6 shadow-card">
+                <div className="bg-white border border-border rounded-3xl p-6 shadow-card overflow-hidden">
                   <div className="flex items-baseline gap-2 mb-6">
                     <span className="font-display font-800 text-4xl text-foreground">${CAR.pricePerDay}</span>
                     <span className="text-muted font-600">/day</span>
@@ -729,21 +729,21 @@ export default function CarDetailClient() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
-                    <div className="min-w-0">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 min-w-0">
+                    <div className="min-w-0 overflow-hidden">
                       <label className="text-xs font-700 text-muted uppercase tracking-wider mb-1.5 block">Pickup</label>
                       <button
                         type="button"
                         onClick={() => { setCalendarSelectingEnd(false); setPickupDate(null); setReturnDate(null); }}
-                        className="form-input w-full text-left text-sm font-600 flex items-center gap-2 min-w-0"
+                        className="form-input w-full max-w-full text-left text-sm font-600 flex items-center gap-2 min-w-0"
                       >
                         <Icon name="CalendarIcon" size={15} className="text-primary shrink-0" />
                         <span className="truncate">{pickupDate ? formatDate(pickupDate) : 'Select'}</span>
                       </button>
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 overflow-hidden">
                       <label className="text-xs font-700 text-muted uppercase tracking-wider mb-1.5 block">Return</label>
-                      <button type="button" className="form-input w-full text-left text-sm font-600 flex items-center gap-2 min-w-0">
+                      <button type="button" className="form-input w-full max-w-full text-left text-sm font-600 flex items-center gap-2 min-w-0">
                         <Icon name="CalendarIcon" size={15} className="text-muted shrink-0" />
                         <span className="truncate">{returnDate ? formatDate(returnDate) : 'Select'}</span>
                       </button>

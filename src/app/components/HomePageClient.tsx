@@ -54,20 +54,20 @@ export default function HomePageClient() {
 
       {/* Search bar */}
       <section id="search" className="relative z-20 -mt-16 max-w-5xl mx-auto px-6">
-        <div className="bg-white rounded-3xl shadow-float p-6 border border-border">
-          <div className="flex flex-col lg:flex-row gap-4">
-            <div className="flex-1 relative">
+        <div className="bg-white rounded-3xl shadow-float p-6 border border-border overflow-hidden">
+          <div className="flex flex-col lg:flex-row gap-4 min-w-0">
+            <div className="flex-1 min-w-0 relative">
               <Icon name="MapPinIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
-              <input type="text" placeholder="City or location" className="form-input pl-12" />
+              <input type="text" placeholder="City or location" className="form-input pl-12 w-full max-w-full" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:w-80">
-              <div className="min-w-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 min-w-0 lg:flex-none lg:w-80">
+              <div className="min-w-0 overflow-hidden">
                 <label className="text-xs font-700 text-muted uppercase block mb-1">Pickup</label>
-                <input type="date" className="form-input w-full min-w-0" />
+                <input type="date" className="form-input w-full max-w-full min-w-0" />
               </div>
-              <div className="min-w-0">
+              <div className="min-w-0 overflow-hidden">
                 <label className="text-xs font-700 text-muted uppercase block mb-1">Return</label>
-                <input type="date" className="form-input w-full min-w-0" />
+                <input type="date" className="form-input w-full max-w-full min-w-0" />
               </div>
             </div>
             <Link href="/car-listing" className="btn-primary py-3.5 px-8 rounded-xl justify-center self-end lg:self-auto">

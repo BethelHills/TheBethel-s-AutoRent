@@ -59,7 +59,7 @@ export default function BookingClient() {
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Form */}
             <div className="flex-1">
-              <div className="bg-white rounded-3xl border border-border p-6 md:p-8 shadow-card">
+              <div className="bg-white rounded-3xl border border-border p-6 md:p-8 shadow-card overflow-hidden">
                 <div className="flex gap-4 mb-8">
                   <button
                     type="button"
@@ -109,25 +109,25 @@ export default function BookingClient() {
                         </select>
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="min-w-0">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 min-w-0">
+                      <div className="min-w-0 overflow-hidden">
                         <label className="text-xs font-700 text-muted uppercase block mb-2">Pickup Date</label>
                         <input
                           type="date"
                           value={pickupDate}
                           onChange={(e) => setPickupDate(e.target.value)}
                           min={new Date().toISOString().split('T')[0]}
-                          className="form-input w-full min-w-0"
+                          className="form-input w-full max-w-full min-w-0"
                         />
                       </div>
-                      <div className="min-w-0">
+                      <div className="min-w-0 overflow-hidden">
                         <label className="text-xs font-700 text-muted uppercase block mb-2">Return Date</label>
                         <input
                           type="date"
                           value={returnDate}
                           onChange={(e) => setReturnDate(e.target.value)}
                           min={pickupDate || new Date().toISOString().split('T')[0]}
-                          className="form-input w-full min-w-0"
+                          className="form-input w-full max-w-full min-w-0"
                         />
                       </div>
                     </div>
