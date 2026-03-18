@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface HeaderProps {
   variant?: 'solid' | 'transparent';
@@ -25,10 +26,15 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-display font-800 text-xl text-white">
-              TheBethel&apos;s AutoRent
-            </span>
+          <Link href="/" className="flex items-center shrink-0" aria-label="TheBethel's AutoRent - Home">
+            <Image
+              src="/thebethelsautorent.logo.svg"
+              alt="TheBethel's AutoRent"
+              width={180}
+              height={120}
+              className="h-10 w-auto object-contain sm:h-12 md:h-14"
+              priority
+            />
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <Link
