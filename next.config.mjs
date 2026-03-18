@@ -1,14 +1,15 @@
-import imageHostsConfig from './image-hosts.config.js';
-const { imageHosts } = imageHostsConfig;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  productionBrowserSourceMaps: true,
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
-    remotePatterns: imageHosts,
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'images.pexels.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'images.pixabay.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'img.rocket.new', pathname: '/**' },
+    ],
   },
 };
 export default nextConfig;
