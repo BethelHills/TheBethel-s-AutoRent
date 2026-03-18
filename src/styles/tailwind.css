@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  .badge {
+    @apply px-2.5 py-1 rounded-lg text-xs font-bold backdrop-blur-sm;
+  }
+  .badge-popular {
+    @apply bg-primary/90 text-white;
+  }
+  .badge-available {
+    @apply bg-emerald-500/90 text-white;
+  }
+  .badge-unavailable {
+    @apply bg-muted/80 text-white;
+  }
+  .card-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
+  }
+  .reveal-item {
+    @apply opacity-0;
+  }
+  .reveal-item.animate-fade-slide-up {
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .img-zoom {
+    @apply transition-transform duration-500 group-hover:scale-105;
+  }
+  .spec-tag {
+    @apply flex items-center gap-1.5 px-2.5 py-1 bg-muted-light text-muted text-xs font-semibold rounded-lg;
+  }
+  .filter-checkbox {
+    @apply w-4 h-4 rounded border-2 border-border text-primary focus:ring-primary;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-colors;
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-border rounded-2xl text-sm font-bold text-foreground hover:border-primary hover:text-primary transition-all;
+  }
+  .sticky-sidebar {
+    @apply sticky top-24;
+  }
+  .grid-bg-dark {
+    background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .form-input {
+    @apply w-full px-4 py-2.5 border border-border rounded-xl text-sm font-medium text-foreground bg-white outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors;
+  }
+  .tab-underline {
+    @apply border-b-2 border-transparent -mb-px;
+  }
+  .tab-underline.active {
+    @apply border-primary;
+  }
+  .gallery-thumb {
+    @apply rounded-xl overflow-hidden border-2 border-transparent transition-all duration-200;
+  }
+  .gallery-thumb.active {
+    @apply border-primary ring-2 ring-primary/20;
+  }
+  .calendar-day {
+    @apply w-8 h-8 rounded-lg flex items-center justify-center transition-colors;
+  }
+  .calendar-day.selected {
+    @apply bg-primary text-white;
+  }
+  .calendar-day.in-range {
+    @apply bg-primary/20 text-foreground;
+  }
+  .calendar-day.disabled {
+    @apply cursor-not-allowed text-muted;
+  }
+}
