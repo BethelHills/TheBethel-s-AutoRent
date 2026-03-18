@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface HeaderProps {
   variant?: 'solid' | 'transparent';
@@ -10,6 +9,7 @@ interface HeaderProps {
 
 export default function Header({ variant = 'solid' }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [imgError, setImgError] = useState(false);
   useEffect(() => {
     if (variant !== 'transparent') return;
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -27,14 +27,23 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center shrink-0" aria-label="TheBethel's AutoRent - Home">
-            <Image
-              src="/thebethelsautorent.logo.svg"
-              alt="TheBethel's AutoRent"
-              width={180}
-              height={120}
-              className="h-10 w-auto object-contain sm:h-12 md:h-14"
-              priority
-            />
+            {imgError ? (
+              <span className="font-display font-800 text-lg sm:text-xl text-white">TheBethel&apos;s AutoRent</span>
+            ) : (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/thebethelsautorent.logo.png"
+                  alt="TheBethel's AutoRent"
+                  className="h-10 w-auto min-w-[100px] sm:h-12 md:h-14 object-contain object-left block"
+                  width={180}
+                  height={120}
+                  loading="eager"
+                  decoding="async"
+                  onError={() => setImgError(true)}
+                />
+              </>
+            )}
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <Link
