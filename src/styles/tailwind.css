@@ -63,10 +63,20 @@
     max-width: 100%;
     width: 100%;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+  /* iOS Safari: temporal inputs ignore width:100% - reset appearance so width is respected */
+  @supports (-webkit-touch-callout: none) {
+    input[type="date"].form-input {
+      -webkit-appearance: textfield;
+      appearance: textfield;
+      display: block;
+      min-width: 0;
+    }
   }
   @media (max-width: 640px) {
     input[type="date"].form-input {
-      font-size: 16px; /* prevents zoom on iOS and helps fit */
+      font-size: 16px; /* prevents zoom on iOS */
     }
   }
   .tab-underline {
