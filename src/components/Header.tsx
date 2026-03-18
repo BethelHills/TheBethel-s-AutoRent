@@ -26,15 +26,15 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center shrink-0" aria-label="TheBethel's AutoRent - Home">
+          <Link href="/" className="flex items-center shrink-0" aria-label="TheBethels AutoRent - Home">
             {imgError ? (
-              <span className="font-display font-800 text-lg sm:text-xl text-white">TheBethel&apos;s AutoRent</span>
+              <span className="font-display font-800 text-lg sm:text-xl text-white">TheBethels AutoRent</span>
             ) : (
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/thebethelsautorent.logo.png"
-                  alt="TheBethel's AutoRent"
+                  alt="TheBethels AutoRent"
                   className="h-10 w-auto min-w-[100px] sm:h-12 md:h-14 object-contain object-left block"
                   width={180}
                   height={120}

@@ -28,7 +28,7 @@ export default function HomePageClient() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-32">
           <div className="max-w-2xl">
             <h1 className="font-display font-800 text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-4">
-              TheBethel&apos;s AutoRent
+              TheBethels AutoRent
             </h1>
             <p className="text-primary font-700 text-sm uppercase tracking-widest mb-4">Car Rental Made Simple</p>
             <h2 className="font-display font-700 text-2xl md:text-3xl text-white/90 mb-6">
