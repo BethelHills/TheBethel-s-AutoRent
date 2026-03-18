@@ -54,21 +54,21 @@ export default function HomePageClient() {
 
       {/* Search bar */}
       <section id="search" className="relative z-20 -mt-16 max-w-5xl mx-auto px-6">
-        <div className="bg-white rounded-3xl shadow-float p-6 border border-border overflow-hidden">
-          <div className="flex flex-row flex-wrap gap-4 min-w-0">
-            <div className="flex-1 min-w-[120px] relative">
+        <div className="bg-white rounded-3xl shadow-float p-6 border border-border">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+            <div className="w-full sm:flex-1 sm:min-w-[120px] relative">
               <Icon name="MapPinIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-              <input type="text" placeholder="City or location" className="form-input pl-12 w-full max-w-full py-3.5" />
+              <input type="text" placeholder="City or location" className="form-input pl-12 w-full py-3.5" />
             </div>
-            <div className="flex-1 min-w-[120px] relative overflow-hidden">
+            <div className="w-full sm:flex-1 sm:min-w-[120px] relative">
               <Icon name="CalendarIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-              <input type="date" className="form-input pl-12 w-full max-w-full min-w-0 py-3.5" aria-label="Pickup date" />
+              <input type="date" className="form-input pl-12 w-full min-w-0 py-3.5" aria-label="Pickup date" />
             </div>
-            <div className="flex-1 min-w-[120px] relative overflow-hidden">
+            <div className="w-full sm:flex-1 sm:min-w-[120px] relative">
               <Icon name="CalendarIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-              <input type="date" className="form-input pl-12 w-full max-w-full min-w-0 py-3.5" aria-label="Return date" />
+              <input type="date" className="form-input pl-12 w-full min-w-0 py-3.5" aria-label="Return date" />
             </div>
-            <Link href="/car-listing" className="btn-primary py-3.5 px-8 rounded-xl justify-center shrink-0">
+            <Link href="/car-listing" className="btn-primary py-3.5 px-8 rounded-xl justify-center shrink-0 w-full sm:w-auto">
               Search
               <Icon name="MagnifyingGlassIcon" size={18} />
             </Link>
