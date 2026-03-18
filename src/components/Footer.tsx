@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
-            <h3 className="font-display font-800 text-xl mb-4">TheBethel&apos;s AutoRent</h3>
+            <h3 className="font-display font-800 text-xl mb-4">TheBethels AutoRent</h3>
             <p className="text-white/70 text-sm leading-relaxed">
               Find your perfect ride. Quality cars, transparent pricing, and seamless booking.
             </p>
@@ -68,7 +68,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-white/20 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-white/60 text-sm">© {new Date().getFullYear()} TheBethel&apos;s AutoRent. All rights reserved.</p>
+          <p className="text-white/60 text-sm">© {new Date().getFullYear()} TheBethels AutoRent. All rights reserved.</p>
           <p className="text-white/60 text-sm">Built by BCodeStack</p>
         </div>
       </div>
