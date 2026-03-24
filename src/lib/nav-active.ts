@@ -26,6 +26,10 @@ export function isRefundPolicyPath(pathname: string | null): boolean {
   return pathname === '/refund-policy';
 }
 
+export function isHelpCenterPath(pathname: string | null): boolean {
+  return pathname === '/help-center';
+}
+
 export function isDashboardPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/dashboard' || pathname.startsWith('/dashboard/');

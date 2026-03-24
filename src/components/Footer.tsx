@@ -8,6 +8,7 @@ import {
   isContactPath,
   isPrivacyPath,
   isRefundPolicyPath,
+  isHelpCenterPath,
   isTermsPath,
 } from '@/lib/nav-active';
 
@@ -57,7 +58,11 @@ export default function Footer() {
             <h4 className="font-display font-700 text-sm uppercase tracking-wider mb-4">Support</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/car-listing" className={`block ${footerMuted}`}>
+                <Link
+                  href="/help-center"
+                  className={`block ${isHelpCenterPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isHelpCenterPath(pathname) ? 'page' : undefined}
+                >
                   Help Center
                 </Link>
               </li>
@@ -71,7 +76,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/car-listing" className={`block ${footerMuted}`}>
+                <Link href="/help-center" className={`block ${footerMuted}`}>
                   FAQ
                 </Link>
               </li>
