@@ -68,7 +68,7 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
               How It Works
             </Link>
             <Link
-              href="/#search"
+              href="/contact"
               className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
             >
               Contact
