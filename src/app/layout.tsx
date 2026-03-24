@@ -1,9 +1,29 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import '@/styles/tailwind.css';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "TheBethel's AutoRent – Car Rental",
   description: 'A modern car rental web application',
+  applicationName: "TheBethel's AutoRent",
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    apple: '/apple-icon',
+  },
+  appleWebApp: {
+    capable: true,
+    title: "TheBethel's AutoRent",
+    statusBarStyle: 'black-translucent',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#1A1A2E',
 };
 
 export default function RootLayout({

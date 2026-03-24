@@ -85,8 +85,8 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-3 md:py-4">
-          <div className="flex items-center justify-between gap-3">
-            <BrandLogo variant="onDark" size="md" className="shrink-0 min-w-0" />
+          <div className="flex min-h-[44px] items-center justify-between gap-3 sm:gap-4">
+            <BrandLogo variant="onDark" size="md" className="min-w-0 shrink-0 select-none" />
 
             {/* Desktop navigation */}
             <nav className="hidden md:flex items-center gap-4 lg:gap-6" aria-label="Main">
