@@ -30,6 +30,10 @@ export function isHelpCenterPath(pathname: string | null): boolean {
   return pathname === '/help-center';
 }
 
+export function isFaqPath(pathname: string | null): boolean {
+  return pathname === '/faq';
+}
+
 export function isDashboardPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/dashboard' || pathname.startsWith('/dashboard/');

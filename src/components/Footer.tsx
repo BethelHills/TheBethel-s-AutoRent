@@ -9,6 +9,7 @@ import {
   isPrivacyPath,
   isRefundPolicyPath,
   isHelpCenterPath,
+  isFaqPath,
   isTermsPath,
 } from '@/lib/nav-active';
 
@@ -76,7 +77,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/help-center" className={`block ${footerMuted}`}>
+                <Link
+                  href="/faq"
+                  className={`block ${isFaqPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isFaqPath(pathname) ? 'page' : undefined}
+                >
                   FAQ
                 </Link>
               </li>
