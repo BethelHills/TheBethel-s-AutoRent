@@ -288,7 +288,7 @@ export default function ContactClient() {
                     </div>
                     <p className="text-xs text-muted leading-relaxed">
                       By submitting this form, you agree to our{' '}
-                      <Link href="/car-listing" className="text-primary font-600 hover:underline">
+                      <Link href="/terms" className="text-primary font-600 hover:underline">
                         Terms of Service
                       </Link>{' '}
                       and acknowledge our{' '}

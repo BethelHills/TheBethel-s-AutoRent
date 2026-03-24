@@ -236,6 +236,10 @@ export default function PrivacyPage() {
             <a href={`mailto:${SUPPORT_EMAIL}`} className="text-primary font-600 hover:underline">
               {SUPPORT_EMAIL}
             </a>
+            {' · '}
+            <Link href="/terms" className="text-primary font-600 hover:underline">
+              Terms of Service
+            </Link>
           </p>
         </div>
       </main>

@@ -18,6 +18,10 @@ export function isPrivacyPath(pathname: string | null): boolean {
   return pathname === '/privacy';
 }
 
+export function isTermsPath(pathname: string | null): boolean {
+  return pathname === '/terms';
+}
+
 export function isDashboardPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/dashboard' || pathname.startsWith('/dashboard/');
