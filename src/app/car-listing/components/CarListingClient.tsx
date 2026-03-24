@@ -8,10 +8,31 @@ import AppImage from '@/components/ui/AppImage';
 import Icon from '@/components/ui/AppIcon';
 import { ALL_CARS, type Car } from '@/lib/cars';
 
-const BRANDS = ['Ford', 'Tesla', 'Land Rover', 'Honda', 'BMW', 'Toyota', 'Porsche', 'Mercedes', 'Chevrolet', 'Jeep', 'Audi'];
+const BRANDS = [
+  'Ford',
+  'Tesla',
+  'Land Rover',
+  'Honda',
+  'BMW',
+  'Toyota',
+  'Porsche',
+  'Mercedes',
+  'Chevrolet',
+  'Jeep',
+  'Audi',
+  'Lexus',
+  'Nissan',
+  'Mazda',
+  'Volvo',
+  'Subaru',
+  'Dodge',
+  'Genesis',
+];
 const TYPES = ['Sedan', 'SUV', 'Sports', 'Van', 'Truck'];
 const FUELS = ['Petrol', 'Electric', 'Diesel', 'Hybrid'];
 const TRANSMISSIONS = ['Automatic', 'Manual'];
+
+const LOAD_MORE_STEP = 6;
 
 // ─── Components ─────────────────────────────────────────────────────────────
 
@@ -144,6 +165,7 @@ export default function CarListingClient() {
   const [availableOnly, setAvailableOnly] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [visibleCount, setVisibleCount] = useState(LOAD_MORE_STEP);
   const cardsRef = useRef<HTMLDivElement>(null);
 
   // Filter logic
@@ -162,6 +184,22 @@ export default function CarListingClient() {
     if (sortBy === 'rating') return b.rating - a.rating;
     return (b.popular ? 1 : 0) - (a.popular ? 1 : 0);
   });
+
+  const displayedCars = filteredCars.slice(0, visibleCount);
+  const hasMoreCars = displayedCars.length < filteredCars.length;
+
+  useEffect(() => {
+    setVisibleCount(LOAD_MORE_STEP);
+  }, [
+    searchLocation,
+    sortBy,
+    priceRange,
+    selectedBrands,
+    selectedTypes,
+    selectedFuels,
+    selectedTransmissions,
+    availableOnly,
+  ]);
 
   // Update active filter chips
   useEffect(() => {
@@ -203,7 +241,7 @@ export default function CarListingClient() {
     const items = document.querySelectorAll('.reveal-item');
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, [filteredCars]);
+  }, [filteredCars, displayedCars]);
 
   // Sidebar filter panel (shared between desktop and mobile)
   const FilterPanel = () => (
@@ -467,7 +505,7 @@ export default function CarListingClient() {
             {/* Car Grid */}
             {filteredCars.length > 0 ? (
               <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredCars.map((car, index) => (
+                {displayedCars.map((car, index) => (
                   <CarCard key={car.id} car={car} index={index} />
                 ))}
               </div>
@@ -485,12 +523,19 @@ export default function CarListingClient() {
             )}
 
             {/* Load More */}
-            {filteredCars.length > 0 && (
+            {filteredCars.length > 0 && hasMoreCars && (
               <div className="text-center mt-12">
-                <button className="btn-outline">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((c) => Math.min(c + LOAD_MORE_STEP, filteredCars.length))}
+                  className="btn-outline"
+                >
                   Load More Cars
                   <Icon name="ArrowDownIcon" size={15} />
                 </button>
+                <p className="text-xs text-muted mt-3">
+                  Showing {displayedCars.length} of {filteredCars.length} cars
+                </p>
               </div>
             )}
           </div>
