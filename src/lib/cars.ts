@@ -53,6 +53,24 @@ export const ALL_CARS: Car[] = [
 
 export const FEATURED_CARS = ALL_CARS.filter((c) => c.popular).slice(0, 4);
 
+/** Alphabetical list of unique pickup / rental cities from the fleet. */
+export function getUniqueLocations(): string[] {
+  return [...new Set(ALL_CARS.map((c) => c.location))].sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: 'base' }),
+  );
+}
+
+/** Location + number of vehicles (for Locations page). */
+export function getLocationStats(): { location: string; count: number }[] {
+  const map = new Map<string, number>();
+  for (const c of ALL_CARS) {
+    map.set(c.location, (map.get(c.location) ?? 0) + 1);
+  }
+  return [...map.entries()]
+    .map(([location, count]) => ({ location, count }))
+    .sort((a, b) => a.location.localeCompare(b.location, undefined, { sensitivity: 'base' }));
+}
+
 /** Popular Rentals filter tabs */
 export type PopularCategory = 'all' | 'economy' | 'suv' | 'luxury' | 'van' | 'electric';
 

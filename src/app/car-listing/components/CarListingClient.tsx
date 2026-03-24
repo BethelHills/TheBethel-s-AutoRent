@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AppImage from '@/components/ui/AppImage';
@@ -155,6 +156,7 @@ const CarCard: React.FC<{ car: Car; index: number }> = ({ car, index }) => {
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export default function CarListingClient() {
+  const searchParams = useSearchParams();
   const [searchLocation, setSearchLocation] = useState('');
   const [sortBy, setSortBy] = useState('popular');
   const [priceRange, setPriceRange] = useState(500);
@@ -167,6 +169,11 @@ export default function CarListingClient() {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [visibleCount, setVisibleCount] = useState(LOAD_MORE_STEP);
   const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const loc = searchParams.get('location');
+    if (loc) setSearchLocation(decodeURIComponent(loc));
+  }, [searchParams]);
 
   // Filter logic
   const filteredCars = ALL_CARS.filter((car) => {

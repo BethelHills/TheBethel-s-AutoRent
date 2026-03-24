@@ -38,6 +38,10 @@ export function isPopularRentalsPath(pathname: string | null): boolean {
   return pathname === '/popular-rentals';
 }
 
+export function isLocationsPath(pathname: string | null): boolean {
+  return pathname === '/locations';
+}
+
 export function isDashboardPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/dashboard' || pathname.startsWith('/dashboard/');

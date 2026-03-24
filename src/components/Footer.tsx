@@ -11,6 +11,7 @@ import {
   isHelpCenterPath,
   isFaqPath,
   isPopularRentalsPath,
+  isLocationsPath,
   isTermsPath,
 } from '@/lib/nav-active';
 
@@ -54,7 +55,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/car-listing" className={`block ${footerMuted}`}>
+                <Link
+                  href="/locations"
+                  className={`block ${isLocationsPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isLocationsPath(pathname) ? 'page' : undefined}
+                >
                   Locations
                 </Link>
               </li>
