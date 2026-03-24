@@ -17,7 +17,7 @@ module.exports = {
           DEFAULT: '#1A1A2E',
           light: '#2D2D4E',
         },
-        background: '#FAFAF8',
+        background: '#F7F6F3',
         foreground: '#0D0D0D',
         muted: {
           DEFAULT: '#6B7280',
@@ -28,6 +28,7 @@ module.exports = {
       },
       fontFamily: {
         display: ['Plus Jakarta Sans', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
         body: ['Manrope', 'sans-serif'],
         sans: ['Manrope', 'sans-serif'],
       },
@@ -48,6 +49,8 @@ module.exports = {
         'card-hover': '0 20px 60px rgba(0,0,0,0.12)',
         'primary': '0 8px 25px rgba(232, 89, 12, 0.35)',
         'float': '0 25px 50px -12px rgba(0,0,0,0.25)',
+        premium:
+          '0 2px 48px rgba(0,0,0,0.06), 0 0 1px rgba(0,0,0,0.04)',
       },
       animation: {
         'fade-slide-up': 'fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',

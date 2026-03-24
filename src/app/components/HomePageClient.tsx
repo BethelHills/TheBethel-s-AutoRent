@@ -24,18 +24,19 @@ export default function HomePageClient() {
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent via-accent-light to-accent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_-10%,rgba(232,89,12,0.18),transparent_55%)]" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-32">
           <div className="max-w-2xl">
-            <h1 className="font-display font-800 text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-4">
+            <p className="text-primary font-700 text-sm uppercase tracking-[0.25em] mb-3">Car Rental Made Simple</p>
+            <h1 className="font-serif font-700 italic text-4xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-4 tracking-tight">
               TheBethels AutoRent
             </h1>
-            <p className="text-primary font-700 text-sm uppercase tracking-widest mb-4">Car Rental Made Simple</p>
             <h2 className="font-display font-700 text-2xl md:text-3xl text-white/90 mb-6">
               Drive Your Dream
               <span className="text-primary"> Car Today</span>
             </h2>
-            <p className="text-white/80 text-lg mb-10 max-w-xl">
+            <p className="text-white/75 text-lg leading-relaxed mb-10 max-w-xl font-light">
               Browse hundreds of cars, book instantly, and hit the road. Transparent pricing, no hidden fees.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -54,7 +55,7 @@ export default function HomePageClient() {
 
       {/* Search bar */}
       <section id="search" className="relative z-20 -mt-16 max-w-5xl mx-auto px-6 overflow-x-hidden">
-        <div className="bg-white rounded-3xl shadow-float p-6 border border-border w-full max-w-full overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-premium p-6 border border-border/80 w-full max-w-full overflow-hidden">
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 min-w-0">
             <div className="w-full sm:flex-1 sm:min-w-[120px] relative min-w-0 overflow-hidden flex">
               <Icon name="MapPinIcon" size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted pointer-events-none z-10" />

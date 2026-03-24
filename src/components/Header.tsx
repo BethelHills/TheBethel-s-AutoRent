@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getSession, clearSession } from '@/lib/auth-client';
+import BrandLogo from '@/components/BrandLogo';
 
 interface HeaderProps {
   variant?: 'solid' | 'transparent';
@@ -12,7 +13,6 @@ interface HeaderProps {
 export default function Header({ variant = 'solid' }: HeaderProps) {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
-  const [imgError, setImgError] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
   const syncAuth = useCallback(() => {
@@ -45,31 +45,15 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isSolid ? 'bg-accent shadow-card' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        isSolid
+          ? 'bg-accent/95 backdrop-blur-md border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.12)]'
+          : 'bg-transparent border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center shrink-0" aria-label="TheBethels AutoRent - Home">
-            {imgError ? (
-              <span className="font-display font-800 text-lg sm:text-xl text-white">TheBethels AutoRent</span>
-            ) : (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/thebethelsautorent.logo.png"
-                  alt="TheBethels AutoRent"
-                  className="h-10 w-auto min-w-[100px] sm:h-12 md:h-14 object-contain object-left block"
-                  width={180}
-                  height={120}
-                  loading="eager"
-                  decoding="async"
-                  onError={() => setImgError(true)}
-                />
-              </>
-            )}
-          </Link>
+          <BrandLogo variant="onDark" size="md" className="shrink-0" />
           <nav className="hidden md:flex items-center gap-8">
             <Link
               href="/car-listing"

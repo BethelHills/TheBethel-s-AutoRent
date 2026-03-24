@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import BrandLogo from '@/components/BrandLogo';
 
 export default function Footer() {
   return (
@@ -6,7 +7,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
-            <h3 className="font-display font-800 text-xl mb-4">TheBethels AutoRent</h3>
+            <div className="mb-4">
+              <BrandLogo variant="onDark" size="sm" href={null} />
+            </div>
             <p className="text-white/70 text-sm leading-relaxed">
               Find your perfect ride. Quality cars, transparent pricing, and seamless booking.
             </p>
