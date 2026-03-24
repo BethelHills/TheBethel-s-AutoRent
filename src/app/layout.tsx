@@ -3,11 +3,28 @@ import '@/styles/tailwind.css';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
+const defaultTitle = "TheBethel's AutoRent – Car Rental";
+const defaultDescription =
+  'Modern car rental — browse vehicles, book in minutes, and drive with confidence.';
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "TheBethel's AutoRent – Car Rental",
-  description: 'A modern car rental web application',
+  title: defaultTitle,
+  description: defaultDescription,
   applicationName: "TheBethel's AutoRent",
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: "TheBethel's AutoRent",
+    title: defaultTitle,
+    description: defaultDescription,
+    url: siteUrl,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: defaultTitle,
+    description: defaultDescription,
+  },
   icons: {
     icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
     apple: '/apple-icon',
