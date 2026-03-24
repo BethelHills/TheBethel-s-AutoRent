@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <div className="mb-4">
-              <BrandLogo variant="onDark" size="sm" href={null} />
+              <BrandLogo variant="onDark" size="sm" />
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
               Find your perfect ride. Quality cars, transparent pricing, and seamless booking.

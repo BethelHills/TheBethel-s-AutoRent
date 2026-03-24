@@ -5,7 +5,7 @@ export type BrandLogoProps = {
   variant?: 'onDark' | 'onLight';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
-  /** Set to `null` for a non-linked mark (e.g. footer). Default `/` */
+  /** Pass a path to wrap the logo in a link. Default: not clickable. */
   href?: string | null;
 };
 
@@ -17,10 +17,10 @@ export default function BrandLogo({
   variant = 'onDark',
   size = 'md',
   className = '',
-  href = '/',
+  href = null,
 }: BrandLogoProps) {
   const isDark = variant === 'onDark';
-  const isLink = href !== null;
+  const isLink = href != null && href !== '';
   const textMain = isDark ? 'text-white' : 'text-accent';
   const textMuted = isDark ? 'text-white/90' : 'text-foreground/90';
   const iconClass =
@@ -99,11 +99,15 @@ export default function BrandLogo({
 
   if (isLink) {
     return (
-      <Link href={href ?? '/'} className={wrapClass} aria-label="TheBethels AutoRent - Home">
+      <Link href={href!} className={wrapClass} aria-label="TheBethels AutoRent - Home">
         {inner}
       </Link>
     );
   }
 
-  return <div className={wrapClass}>{inner}</div>;
+  return (
+    <div className={wrapClass} role="img" aria-label="TheBethels AutoRent">
+      {inner}
+    </div>
+  );
 }
