@@ -10,30 +10,39 @@ import Icon from '@/components/ui/AppIcon';
 import { ALL_CARS, type Car } from '@/lib/cars';
 
 const BRANDS = [
-  'Ford',
-  'Tesla',
-  'Land Rover',
-  'Honda',
-  'BMW',
-  'Toyota',
-  'Porsche',
-  'Mercedes',
-  'Chevrolet',
-  'Jeep',
+  'Acura',
   'Audi',
-  'Lexus',
-  'Nissan',
-  'Mazda',
-  'Volvo',
-  'Subaru',
+  'BMW',
+  'Cadillac',
+  'Chevrolet',
+  'Chrysler',
   'Dodge',
+  'Ford',
   'Genesis',
+  'Honda',
+  'Hyundai',
+  'Jeep',
+  'Kia',
+  'Land Rover',
+  'Lexus',
+  'Lincoln',
+  'Lucid',
+  'Mazda',
+  'Mercedes',
+  'Nissan',
+  'Porsche',
+  'Rivian',
+  'Subaru',
+  'Tesla',
+  'Toyota',
+  'Volkswagen',
+  'Volvo',
 ];
 const TYPES = ['Sedan', 'SUV', 'Sports', 'Van', 'Truck'];
 const FUELS = ['Petrol', 'Electric', 'Diesel', 'Hybrid'];
 const TRANSMISSIONS = ['Automatic', 'Manual'];
 
-const LOAD_MORE_STEP = 6;
+const LOAD_MORE_STEP = 12;
 
 // ─── Components ─────────────────────────────────────────────────────────────
 
