@@ -292,7 +292,7 @@ export default function ContactClient() {
                         Terms of Service
                       </Link>{' '}
                       and acknowledge our{' '}
-                      <Link href="/car-listing" className="text-primary font-600 hover:underline">
+                      <Link href="/privacy" className="text-primary font-600 hover:underline">
                         Privacy Policy
                       </Link>
                       .

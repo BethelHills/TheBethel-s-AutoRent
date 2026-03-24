@@ -14,6 +14,10 @@ export function isContactPath(pathname: string | null): boolean {
   return pathname === '/contact';
 }
 
+export function isPrivacyPath(pathname: string | null): boolean {
+  return pathname === '/privacy';
+}
+
 export function isDashboardPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/dashboard' || pathname.startsWith('/dashboard/');

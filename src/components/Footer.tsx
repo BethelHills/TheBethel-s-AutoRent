@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
-import { isBrowseCarsPath, isContactPath } from '@/lib/nav-active';
+import { isBrowseCarsPath, isContactPath, isPrivacyPath } from '@/lib/nav-active';
 
 const footerMuted = 'text-white/70 hover:text-primary transition-colors text-sm';
 const footerActive = 'text-primary font-700 border-l-2 border-primary pl-3 -ml-px text-sm';
@@ -75,7 +75,11 @@ export default function Footer() {
             <h4 className="font-display font-700 text-sm uppercase tracking-wider mb-4">Legal</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/car-listing" className="text-white/70 hover:text-primary transition-colors text-sm">
+                <Link
+                  href="/privacy"
+                  className={`block ${isPrivacyPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isPrivacyPath(pathname) ? 'page' : undefined}
+                >
                   Privacy Policy
                 </Link>
               </li>
