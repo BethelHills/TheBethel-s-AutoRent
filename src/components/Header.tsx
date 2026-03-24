@@ -1,15 +1,35 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { getSession, clearSession } from '@/lib/auth-client';
 
 interface HeaderProps {
   variant?: 'solid' | 'transparent';
 }
 
 export default function Header({ variant = 'solid' }: HeaderProps) {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const syncAuth = useCallback(() => {
+    setLoggedIn(getSession() !== null);
+  }, []);
+
+  useEffect(() => {
+    syncAuth();
+    const onAuthChange = () => syncAuth();
+    window.addEventListener('storage', onAuthChange);
+    window.addEventListener('autorent-auth-changed', onAuthChange);
+    return () => {
+      window.removeEventListener('storage', onAuthChange);
+      window.removeEventListener('autorent-auth-changed', onAuthChange);
+    };
+  }, [syncAuth]);
+
   useEffect(() => {
     if (variant !== 'transparent') return;
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -17,6 +37,11 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
     return () => window.removeEventListener('scroll', onScroll);
   }, [variant]);
   const isSolid = variant === 'solid' || (variant === 'transparent' && scrolled);
+
+  const handleLogout = () => {
+    clearSession();
+    router.refresh();
+  };
 
   return (
     <header
@@ -72,18 +97,30 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
             >
               Dashboard
             </Link>
-            <Link
-              href="/sign-up-login"
-              className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/sign-up-login"
-              className="px-4 py-2 bg-primary text-white text-sm font-700 rounded-xl hover:bg-primary-dark transition-colors"
-            >
-              Get Started
-            </Link>
+            {loggedIn ? (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
+              >
+                Log out
+              </button>
+            ) : (
+              <>
+                <Link
+                  href="/sign-up-login"
+                  className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/sign-up-login"
+                  className="px-4 py-2 bg-primary text-white text-sm font-700 rounded-xl hover:bg-primary-dark transition-colors"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

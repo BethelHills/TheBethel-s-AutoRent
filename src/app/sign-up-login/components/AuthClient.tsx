@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Icon from '@/components/ui/AppIcon';
+import { setSession } from '@/lib/auth-client';
 
 export default function AuthClient() {
   const [tab, setTab] = useState<'login' | 'signup'>('login');
@@ -15,6 +16,7 @@ export default function AuthClient() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSession(email.trim() || 'user@example.com');
     setSubmitted(true);
   };
 
