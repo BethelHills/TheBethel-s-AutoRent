@@ -10,6 +10,7 @@ import {
   isRefundPolicyPath,
   isHelpCenterPath,
   isFaqPath,
+  isPopularRentalsPath,
   isTermsPath,
 } from '@/lib/nav-active';
 
@@ -44,7 +45,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/car-listing" className={`block ${footerMuted}`}>
+                <Link
+                  href="/popular-rentals"
+                  className={`block ${isPopularRentalsPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isPopularRentalsPath(pathname) ? 'page' : undefined}
+                >
                   Popular Rentals
                 </Link>
               </li>

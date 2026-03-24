@@ -52,3 +52,42 @@ export const ALL_CARS: Car[] = [
 ];
 
 export const FEATURED_CARS = ALL_CARS.filter((c) => c.popular).slice(0, 4);
+
+/** Popular Rentals filter tabs */
+export type PopularCategory = 'all' | 'economy' | 'suv' | 'luxury' | 'van' | 'electric';
+
+/** Estimated booking volume for ranking (higher = more in demand). */
+export function estimatedBookings(car: Car): number {
+  return Math.round(car.reviewCount * 1.08 + (car.popular ? 220 : 0) + car.id * 3);
+}
+
+/** Sort score: favors high bookings, strong ratings, availability. */
+export function getPopularRentalScore(car: Car): number {
+  return estimatedBookings(car) * car.rating + (car.available ? 120 : -400);
+}
+
+export function carMatchesPopularCategory(car: Car, cat: PopularCategory): boolean {
+  if (cat === 'all') return true;
+  if (cat === 'electric') return car.fuel === 'Electric';
+  if (cat === 'suv') return car.type === 'SUV';
+  if (cat === 'van') return car.type === 'Van';
+  if (cat === 'luxury') {
+    return (
+      car.pricePerDay >= 190 ||
+      car.type === 'Sports' ||
+      (['Porsche', 'Mercedes', 'Lexus', 'Genesis'].includes(car.brand) && car.pricePerDay >= 125)
+    );
+  }
+  if (cat === 'economy') {
+    return car.pricePerDay <= 118 && !['Sports', 'Van', 'Truck'].includes(car.type);
+  }
+  return true;
+}
+
+/** Short label for card (SUV, Sedan, Luxury, Van / Group, Electric, …). */
+export function getPopularTypeLabel(car: Car): string {
+  if (car.type === 'Van') return 'Van / Group';
+  if (car.fuel === 'Electric') return `${car.type} · Electric`;
+  if (car.pricePerDay >= 200 || car.type === 'Sports') return 'Luxury';
+  return car.type;
+}

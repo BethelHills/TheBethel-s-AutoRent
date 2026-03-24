@@ -34,6 +34,10 @@ export function isFaqPath(pathname: string | null): boolean {
   return pathname === '/faq';
 }
 
+export function isPopularRentalsPath(pathname: string | null): boolean {
+  return pathname === '/popular-rentals';
+}
+
 export function isDashboardPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/dashboard' || pathname.startsWith('/dashboard/');
