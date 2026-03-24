@@ -2,20 +2,33 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { getSession, clearSession } from '@/lib/auth-client';
 import BrandLogo from '@/components/BrandLogo';
 import Icon from '@/components/ui/AppIcon';
+import {
+  isBrowseCarsPath,
+  isHowItWorksPath,
+  isContactPath,
+  isMemberHubPath,
+  isAuthPath,
+} from '@/lib/nav-active';
 
 interface HeaderProps {
   variant?: 'solid' | 'transparent';
 }
 
-const navLinkClass =
-  'text-sm font-600 text-white/90 hover:text-primary transition-colors py-3 px-1 min-h-[44px] flex items-center';
+const navInactive = 'text-sm font-600 text-white/90 hover:text-primary transition-colors';
+const navActive =
+  'text-sm font-700 text-primary bg-primary/15 ring-1 ring-primary/25 rounded-lg px-2.5 py-1.5 -mx-0.5 transition-colors';
+
+const mobileRow = 'py-3 px-3 min-h-[44px] flex items-center rounded-xl transition-colors';
+const mobileInactive = `${mobileRow} text-white/90 hover:bg-white/10 active:bg-white/10`;
+const mobileActive = `${mobileRow} text-primary font-700 bg-white/10 border-l-2 border-primary pl-[10px]`;
 
 export default function Header({ variant = 'solid' }: HeaderProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -76,22 +89,35 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
             <BrandLogo variant="onDark" size="md" className="shrink-0 min-w-0" />
 
             {/* Desktop navigation */}
-            <nav className="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main">
-              <Link href="/car-listing" className="text-sm font-600 text-white/90 hover:text-primary transition-colors">
+            <nav className="hidden md:flex items-center gap-4 lg:gap-6" aria-label="Main">
+              <Link
+                href="/car-listing"
+                className={isBrowseCarsPath(pathname) ? navActive : navInactive}
+                aria-current={isBrowseCarsPath(pathname) ? 'page' : undefined}
+              >
                 Browse Cars
               </Link>
-              <Link href="/#search" className="text-sm font-600 text-white/90 hover:text-primary transition-colors">
+              <Link
+                href="/#search"
+                className={isHowItWorksPath(pathname) ? navActive : navInactive}
+                aria-current={isHowItWorksPath(pathname) ? 'page' : undefined}
+              >
                 How It Works
               </Link>
-              <Link href="/contact" className="text-sm font-600 text-white/90 hover:text-primary transition-colors">
+              <Link
+                href="/contact"
+                className={isContactPath(pathname) ? navActive : navInactive}
+                aria-current={isContactPath(pathname) ? 'page' : undefined}
+              >
                 Contact
               </Link>
             </nav>
 
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-2 lg:gap-3">
               <Link
                 href="/dashboard"
-                className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
+                className={isMemberHubPath(pathname) ? navActive : navInactive}
+                aria-current={isMemberHubPath(pathname) ? 'page' : undefined}
               >
                 Dashboard
               </Link>
@@ -99,7 +125,7 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
+                  className={`text-sm font-600 rounded-lg px-2.5 py-1.5 text-white/90 hover:text-primary hover:bg-white/5 transition-colors`}
                 >
                   Log out
                 </button>
@@ -107,13 +133,18 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
                 <>
                   <Link
                     href="/sign-up-login"
-                    className="text-sm font-600 text-white/90 hover:text-primary transition-colors"
+                    className={isAuthPath(pathname) ? navActive : navInactive}
+                    aria-current={isAuthPath(pathname) ? 'page' : undefined}
                   >
                     Sign In
                   </Link>
                   <Link
                     href="/sign-up-login"
-                    className="px-4 py-2 bg-primary text-white text-sm font-700 rounded-xl hover:bg-primary-dark transition-colors"
+                    className={`px-4 py-2 text-sm font-700 rounded-xl transition-colors ${
+                      isAuthPath(pathname)
+                        ? 'bg-primary-dark text-white ring-2 ring-primary ring-offset-2 ring-offset-accent'
+                        : 'bg-primary text-white hover:bg-primary-dark'
+                    }`}
                   >
                     Get Started
                   </Link>
@@ -169,23 +200,43 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
             </button>
           </div>
           <nav className="flex-1 overflow-y-auto overscroll-contain px-2 py-4 flex flex-col" aria-label="Mobile">
-            <Link href="/car-listing" className={`${navLinkClass} rounded-xl px-3 active:bg-white/10`} onClick={closeMenu}>
+            <Link
+              href="/car-listing"
+              className={isBrowseCarsPath(pathname) ? mobileActive : mobileInactive}
+              onClick={closeMenu}
+              aria-current={isBrowseCarsPath(pathname) ? 'page' : undefined}
+            >
               Browse Cars
             </Link>
-            <Link href="/#search" className={`${navLinkClass} rounded-xl px-3 active:bg-white/10`} onClick={closeMenu}>
+            <Link
+              href="/#search"
+              className={isHowItWorksPath(pathname) ? mobileActive : mobileInactive}
+              onClick={closeMenu}
+              aria-current={isHowItWorksPath(pathname) ? 'page' : undefined}
+            >
               How It Works
             </Link>
-            <Link href="/contact" className={`${navLinkClass} rounded-xl px-3 active:bg-white/10`} onClick={closeMenu}>
+            <Link
+              href="/contact"
+              className={isContactPath(pathname) ? mobileActive : mobileInactive}
+              onClick={closeMenu}
+              aria-current={isContactPath(pathname) ? 'page' : undefined}
+            >
               Contact
             </Link>
             <div className="my-3 h-px bg-white/15 mx-3" />
-            <Link href="/dashboard" className={`${navLinkClass} rounded-xl px-3 active:bg-white/10`} onClick={closeMenu}>
+            <Link
+              href="/dashboard"
+              className={isMemberHubPath(pathname) ? mobileActive : mobileInactive}
+              onClick={closeMenu}
+              aria-current={isMemberHubPath(pathname) ? 'page' : undefined}
+            >
               Dashboard
             </Link>
             {loggedIn ? (
               <button
                 type="button"
-                className={`${navLinkClass} rounded-xl px-3 text-left w-full active:bg-white/10`}
+                className={`${mobileInactive} text-left w-full border-0 bg-transparent cursor-pointer`}
                 onClick={handleLogout}
               >
                 Log out
@@ -194,14 +245,19 @@ export default function Header({ variant = 'solid' }: HeaderProps) {
               <>
                 <Link
                   href="/sign-up-login"
-                  className={`${navLinkClass} rounded-xl px-3 active:bg-white/10`}
+                  className={isAuthPath(pathname) ? mobileActive : mobileInactive}
                   onClick={closeMenu}
+                  aria-current={isAuthPath(pathname) ? 'page' : undefined}
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/sign-up-login"
-                  className="mx-3 mt-2 flex items-center justify-center min-h-[48px] rounded-xl bg-primary text-white text-sm font-700 hover:bg-primary-dark transition-colors"
+                  className={`mx-3 mt-2 flex items-center justify-center min-h-[48px] rounded-xl text-sm font-700 transition-colors ${
+                    isAuthPath(pathname)
+                      ? 'bg-primary-dark text-white ring-2 ring-primary ring-offset-2 ring-offset-accent'
+                      : 'bg-primary text-white hover:bg-primary-dark'
+                  }`}
                   onClick={closeMenu}
                 >
                   Get Started

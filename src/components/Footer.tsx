@@ -1,7 +1,16 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
+import { isBrowseCarsPath, isContactPath } from '@/lib/nav-active';
+
+const footerMuted = 'text-white/70 hover:text-primary transition-colors text-sm';
+const footerActive = 'text-primary font-700 border-l-2 border-primary pl-3 -ml-px text-sm';
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="bg-accent text-white mt-20">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-16">
@@ -18,17 +27,21 @@ export default function Footer() {
             <h4 className="font-display font-700 text-sm uppercase tracking-wider mb-4">Explore</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/car-listing" className="text-white/70 hover:text-primary transition-colors text-sm">
+                <Link
+                  href="/car-listing"
+                  className={`block ${isBrowseCarsPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isBrowseCarsPath(pathname) ? 'page' : undefined}
+                >
                   Browse Cars
                 </Link>
               </li>
               <li>
-                <Link href="/car-listing" className="text-white/70 hover:text-primary transition-colors text-sm">
+                <Link href="/car-listing" className={`block ${footerMuted}`}>
                   Popular Rentals
                 </Link>
               </li>
               <li>
-                <Link href="/car-listing" className="text-white/70 hover:text-primary transition-colors text-sm">
+                <Link href="/car-listing" className={`block ${footerMuted}`}>
                   Locations
                 </Link>
               </li>
@@ -38,17 +51,21 @@ export default function Footer() {
             <h4 className="font-display font-700 text-sm uppercase tracking-wider mb-4">Support</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/car-listing" className="text-white/70 hover:text-primary transition-colors text-sm">
+                <Link href="/car-listing" className={`block ${footerMuted}`}>
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-white/70 hover:text-primary transition-colors text-sm">
+                <Link
+                  href="/contact"
+                  className={`block ${isContactPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isContactPath(pathname) ? 'page' : undefined}
+                >
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/car-listing" className="text-white/70 hover:text-primary transition-colors text-sm">
+                <Link href="/car-listing" className={`block ${footerMuted}`}>
                   FAQ
                 </Link>
               </li>
