@@ -144,6 +144,10 @@ export default function PaymentClient() {
                     <>Pay ${total} <Icon name="LockClosedIcon" size={18} /></>
                   )}
                 </button>
+                <p className="text-xs text-muted mt-3 leading-relaxed">
+                  Secure payment powered by Stripe. Your payment information is encrypted and never stored on our
+                  servers.
+                </p>
               </form>
             </div>
             <div className="lg:w-80 shrink-0">
