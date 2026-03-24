@@ -3,7 +3,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import BrandLogo from '@/components/BrandLogo';
-import { isBrowseCarsPath, isContactPath, isPrivacyPath, isTermsPath } from '@/lib/nav-active';
+import {
+  isBrowseCarsPath,
+  isContactPath,
+  isPrivacyPath,
+  isRefundPolicyPath,
+  isTermsPath,
+} from '@/lib/nav-active';
 
 const footerMuted = 'text-white/70 hover:text-primary transition-colors text-sm';
 const footerActive = 'text-primary font-700 border-l-2 border-primary pl-3 -ml-px text-sm';
@@ -90,6 +96,15 @@ export default function Footer() {
                   aria-current={isTermsPath(pathname) ? 'page' : undefined}
                 >
                   Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/refund-policy"
+                  className={`block ${isRefundPolicyPath(pathname) ? footerActive : footerMuted}`}
+                  aria-current={isRefundPolicyPath(pathname) ? 'page' : undefined}
+                >
+                  Refund Policy
                 </Link>
               </li>
             </ul>

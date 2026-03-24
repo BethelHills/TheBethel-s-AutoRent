@@ -22,6 +22,10 @@ export function isTermsPath(pathname: string | null): boolean {
   return pathname === '/terms';
 }
 
+export function isRefundPolicyPath(pathname: string | null): boolean {
+  return pathname === '/refund-policy';
+}
+
 export function isDashboardPath(pathname: string | null): boolean {
   if (!pathname) return false;
   return pathname === '/dashboard' || pathname.startsWith('/dashboard/');
